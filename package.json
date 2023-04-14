@@ -1,0 +1,17 @@
+{
+  "name": "kickLiveDiscordNotifier",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Mandragora",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@discordjs/builders": "^1.6.1",
+    "axios": "^1.3.5",
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0"
+  }
+}
