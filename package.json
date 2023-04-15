@@ -2,6 +2,9 @@
   "name": "kickLiveDiscordNotifier",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "Mandragora",
   "license": "MIT",
   "private": false,

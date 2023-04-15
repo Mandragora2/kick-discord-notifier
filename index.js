@@ -12,15 +12,12 @@ let messageSent = false;
 const livestreamUrl = 'https://kick.com/api/v1/channels/' + process.env.STREAMER_SLUG;
 
 function poll(chan) {
-	const rand = Math.floor(Math.random() * 999999999);
-
 	const headers = {
 		'Accept': 'text/html,application/xhtml+xml,application/xml',
 		'Accept-Encoding': 'gzip, deflate',
 		'User-Agent': 'Firefox/108.0',
 		'Cookie': '',
 	};
-	const url = `${livestreamUrl}`;
 
 	console.log('Polling kick…');
 
@@ -32,6 +29,7 @@ function poll(chan) {
 		.then((response) => {
 			data = response.data;
 			if (data.livestream === null) {
+				console.log(isLive ? 'Stream switch to offline.' : 'Streamer is offline.');
 				isLive = false;
 				messageSent = false;
 				return;
