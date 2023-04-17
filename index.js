@@ -27,11 +27,13 @@ function poll(chan) {
 		httpsAgent: new https.Agent({ keepAlive: false }),
 	})
 		.then((response) => {
+			const botUser = chan.client.user;
 			data = response.data;
 			if (data.livestream === null) {
 				console.log(isLive ? 'Stream switch to offline.' : 'Streamer is offline.');
 				isLive = false;
 				messageSent = false;
+				botUser.setPresence({ activities: [] });
 				return;
 			}
 
@@ -44,14 +46,16 @@ function poll(chan) {
 			const embed = new EmbedBuilder()
 				.setTitle(data.livestream.session_title)
 				.setURL(`https://kick.com/${data.slug}`)
+				.setDescription(`https://kick.com/${data.slug}`)
 				.setThumbnail(data.user.profile_pic)
 				.setImage(data.livestream.thumbnail.url)
 				.setTimestamp(new Date(data.livestream.created_at).getTime())
 				.setFooter({ text: 'Kick' })
         ;
 
-			chan.send({ embeds: [embed] });
+			chan.send({ embeds: [embed], content: '<:Kick_29:1097568203963650089> LIVE ON SUR KICK <:Kick_29:1097568203963650089>' });
 			messageSent = true;
+			botUser.setPresence({ activities: [{ name: `${data.user.username} sur Kick`, type: 3, url: `https://kick.com/${data.slug}` }] });
 		});
 }
 
