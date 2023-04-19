@@ -1,3 +1,4 @@
+require('log-timestamp');
 require('dotenv').config();
 const { Client, Events, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
