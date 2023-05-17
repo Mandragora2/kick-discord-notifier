@@ -109,6 +109,7 @@ client.once(Events.ClientReady, async c => {
 	);
 
 	process.on('SIGINT', function() {
+		console.log(`Call stats: ${stats.total} calls, ${(stats.success * 100 / stats.total).toFixed(2)}% success, ${(stats.error * 100 / stats.total).toFixed(2)}% error.`);
 		c.destroy();
 		process.exit();
 	});
